@@ -1,29 +1,36 @@
 //  click handeler  every item
 let count = 0;
+let allTotal = 0;
 document.getElementById("first-btn").addEventListener("click", function () {
     count += 1;
-    const getElemntObj = getElement("cofee-name", "cofee-price", "coffee-quantity", "coffeTotal","items-count","products-count");
+    const getElemntObj = getElement("cofee-name", "cofee-price", "coffee-quantity", "coffeTotal", "items-count", "products-count");
     const parentElement = document.getElementById("parent");
-    setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal, getElemntObj.productsCount,getElemntObj.itemsCount, parentElement);
-    const grandTotal=getElemntObj.productItemTotal
+    const grandAllTotal = grandTotal(getElemntObj.productItemTotal);
+    console.log(grandAllTotal);
+    setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal, getElemntObj.productsCount, getElemntObj.itemsCount, parentElement, grandAllTotal, "grand-total");
+
+
 
 })
 document.getElementById("second-btn").addEventListener("click", function () {
     count += 1;
-    const getElemntObj = getElement("heart-name", "heart-price", "heart-quantity", "heartTotal","items-count","products-count");
+    const getElemntObj = getElement("heart-name", "heart-price", "heart-quantity", "heartTotal", "items-count", "products-count");
     const parentElement = document.getElementById("parent");
-    setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal,getElemntObj.productsCount,getElemntObj.itemsCount, parentElement);
+    const grandAllTotal = grandTotal(getElemntObj.productItemTotal);
+    setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal, getElemntObj.productsCount, getElemntObj.itemsCount, parentElement, grandAllTotal, "grand-total");
 })
 document.getElementById("vue-btn").addEventListener("click", function () {
     count += 1;
-    const getElementObj = getInputElemntObj("vue-name", "first-input", "second-input", "vueTotal","items-count","products-count");
+    const getElemntObj = getInputElemntObj("vue-name", "first-input", "second-input", "vueTotal", "items-count", "products-count");
     const parentElement = document.getElementById("parent");
-    setElement(getElementObj.poductName, getElementObj.productPrice, getElementObj.productQuantity, getElementObj.productItemTotal,getElemntObj.productsCount,getElemntObj.itemsCount, parentElement);
+    const grandAllTotal = grandTotal(getElemntObj.productItemTotal);
+    console.log(grandAllTotal);
+    setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal, getElemntObj.productsCount, getElemntObj.itemsCount, parentElement, grandAllTotal, "grand-total");
 })
 
 // get elemant for innerText
-function getElement(NameId, PriceId, QuantityId,pTotal,pCount,iCount) {
-console.log(NameId, PriceId, QuantityId,pCount,iCount);
+function getElement(NameId, PriceId, QuantityId, pTotal, pCount, iCount) {
+
     const pName = document.getElementById(NameId).innerText;
     const pPrice = document.getElementById(PriceId).innerText;
     const pQuantity = document.getElementById(QuantityId).innerText;
@@ -39,38 +46,38 @@ console.log(NameId, PriceId, QuantityId,pCount,iCount);
         productPrice: pPrice,
         productQuantity: pQuantity,
         productItemTotal: pTotal,
-        productsCount:pCount,
-        itemsCount:iCount,
+        productsCount: pCount,
+        itemsCount: iCount,
     }
-    console.log(itemObj);
     return itemObj;
 }
 // get elemant for value
 
-function getInputElemntObj(NameId, PriceId, QuantityId, pTotal,pCount,iCount) {
-   console.log(NameId, PriceId, QuantityId, pTotal,pCount,iCount);
+function getInputElemntObj(NameId, PriceId, QuantityId, pTotal, pCount, iCount) {
+
     const pName = document.getElementById(NameId).innerText;
     const pPrice = document.getElementById(PriceId).value;
     const pQuantity = document.getElementById(QuantityId).value;
     pTotal = (parseInt(pPrice) - parseInt(pQuantity));
-    console.log(pName, pPrice, pQuantity, pTotal);
+
 
     const itemObj = {
         poductName: pName,
         productPrice: pPrice,
         productQuantity: pQuantity,
         productItemTotal: pTotal,
-        productsCount:pCount,
-        itemsCount:iCount,
+        productsCount: pCount,
+        itemsCount: iCount,
     }
     return itemObj;
 }
 
 // set element every item
-function setElement(pName, pPrice, pQuantity, pItemTotal, pCount,iCount, parentElement) {
-    console.log(pName, pPrice, pQuantity, pItemTotal, pCount, parentElement);
-    document.getElementById(pCount).innerText= count;
-    document.getElementById(iCount).innerText= count;
+function setElement(pName, pPrice, pQuantity, pItemTotal, pCount, iCount, parentElement, grandTotal, grandId) {
+
+    document.getElementById(pCount).innerText = count;
+    document.getElementById(iCount).innerText = count;
+    document.getElementById(grandId).innerText = grandTotal;
     const tr = document.createElement("tr");
     tr.innerHTML = `
     <td>${count}</td>
@@ -80,4 +87,10 @@ function setElement(pName, pPrice, pQuantity, pItemTotal, pCount,iCount, parentE
     <td>${pItemTotal}</td>
     `
     parentElement.appendChild(tr);
+}
+
+// grandTotal
+function grandTotal(value) {
+    allTotal = allTotal + value;
+    return allTotal;
 }
