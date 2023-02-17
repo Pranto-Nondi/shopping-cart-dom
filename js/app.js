@@ -9,8 +9,8 @@ document.getElementById("first-btn").addEventListener("click", function () {
     }
     const parentElement = document.getElementById("parent");
     const grandAllTotal = grandTotal(getElemntObj.productItemTotal);
-    setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal, getElemntObj.productsCount, getElemntObj.itemsCount, parentElement, grandAllTotal, "grand-total");
-
+    setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal, getElemntObj.productsCount, getElemntObj.itemsCount, parentElement, grandAllTotal, "grand-total", "all-coast");
+    addToCartDisable("first-btn");
 })
 document.getElementById("second-btn").addEventListener("click", function () {
     count += 1;
@@ -20,7 +20,8 @@ document.getElementById("second-btn").addEventListener("click", function () {
     }
     const parentElement = document.getElementById("parent");
     const grandAllTotal = grandTotal(getElemntObj.productItemTotal);
-    setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal, getElemntObj.productsCount, getElemntObj.itemsCount, parentElement, grandAllTotal, "grand-total");
+    setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal, getElemntObj.productsCount, getElemntObj.itemsCount, parentElement, grandAllTotal, "grand-total", "all-coast");
+    addToCartDisable("second-btn");
 })
 document.getElementById("vue-btn").addEventListener("click", function () {
     count += 1;
@@ -28,10 +29,14 @@ document.getElementById("vue-btn").addEventListener("click", function () {
     if (isNaN(getElemntObj.productItemTotal)) {
         alert("invalid data");
     }
+    else if (getElemntObj.productItemTotal <= 0) {
+        alert("invalid data");
+    }
     else {
         const parentElement = document.getElementById("parent");
         const grandAllTotal = grandTotal(getElemntObj.productItemTotal);
-        setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal, getElemntObj.productsCount, getElemntObj.itemsCount, parentElement, grandAllTotal, "grand-total");
+        setElement(getElemntObj.poductName, getElemntObj.productPrice, getElemntObj.productQuantity, getElemntObj.productItemTotal, getElemntObj.productsCount, getElemntObj.itemsCount, parentElement, grandAllTotal, "grand-total", "all-coast");
+        addToCartDisable("vue-btn");
     }
 
 })
