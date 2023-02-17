@@ -2,8 +2,8 @@
 function getElement(NameId, PriceId, QuantityId, pTotal, pCount, iCount) {
 
     const pName = document.getElementById(NameId).innerText;
-    const pPrice = parseInt(document.getElementById(PriceId).innerText);
-    const pQuantity = parseInt(document.getElementById(QuantityId).innerText);
+    const pPrice = getElementText(PriceId);
+    const pQuantity = getElementText(QuantityId);
     if (pName === "Coffee Js") {
         pTotal = parseInt(pQuantity) * 110;
     }
@@ -21,13 +21,19 @@ function getElement(NameId, PriceId, QuantityId, pTotal, pCount, iCount) {
     }
     return itemObj;
 }
+
+function getElementText(Id) {
+    const P = parseInt(document.getElementById(Id).innerText);
+    return P;
+
+}
 // get elemant for value
 
 function getInputElemntObj(NameId, PriceId, QuantityId, pTotal, pCount, iCount) {
 
     const pName = document.getElementById(NameId).innerText;
-    const pPrice = (document.getElementById(PriceId).value);
-    const pQuantity = (document.getElementById(QuantityId).value);
+    const pPrice = getInputValue(PriceId);
+    const pQuantity = getInputValue(QuantityId);
     inputValueClear(PriceId, QuantityId);
 
     if (pPrice < 0 || pQuantity < 0) {
@@ -54,6 +60,14 @@ function getInputElemntObj(NameId, PriceId, QuantityId, pTotal, pCount, iCount) 
 
 }
 
+function getInputValue(id) {
+    const p = document.getElementById(id).value;
+    return p;
+}
+
+
+
+
 // set element every item
 function setElement(pName, pPrice, pQuantity, pItemTotal, pCount, iCount, parentElement, grandTotal, grandId, allCaostId) {
 
@@ -65,7 +79,7 @@ function setElement(pName, pPrice, pQuantity, pItemTotal, pCount, iCount, parent
     }
 
     else {
-        setItemText(pCount, iCount, grandId, allCaostId,grandTotal);
+        setItemText(pCount, iCount, grandId, allCaostId, grandTotal);
         const tr = document.createElement("tr");
         tr.innerHTML = `
         <td>${count}</td>
@@ -78,8 +92,8 @@ function setElement(pName, pPrice, pQuantity, pItemTotal, pCount, iCount, parent
     }
 
 }
-
-function setItemText(pCount, iCount, grandId, allCaostId,grandTotal) {
+// set element text
+function setItemText(pCount, iCount, grandId, allCaostId, grandTotal) {
     document.getElementById(pCount).innerText = count;
     document.getElementById(iCount).innerText = count;
     document.getElementById(grandId).innerText = grandTotal;
