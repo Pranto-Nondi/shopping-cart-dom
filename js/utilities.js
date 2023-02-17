@@ -34,7 +34,8 @@ function getInputElemntObj(NameId, PriceId, QuantityId, pTotal, pCount, iCount) 
     const pName = document.getElementById(NameId).innerText;
     const pPrice = getInputValue(PriceId);
     const pQuantity = getInputValue(QuantityId);
-    inputValueClear(PriceId, QuantityId);
+    inputValueClear(PriceId);
+    inputValueClear(QuantityId);
 
     if (pPrice < 0 || pQuantity < 0) {
         return 0;
@@ -110,7 +111,10 @@ function grandTotal(value) {
 function addToCartDisable(id) {
     document.getElementById(id).setAttribute("disabled", false);
 }
-function inputValueClear(id1, id2) {
-    document.getElementById(id1).value = "";
-    document.getElementById(id2).value = "";
+function inputValueClear(id) {
+    document.getElementById(id).value = "";
+ 
 }
+
+
+

@@ -41,3 +41,26 @@ document.getElementById("vue-btn").addEventListener("click", function () {
 
 })
 
+document.getElementById("apply-btn").addEventListener("click", function () {
+    const promoCodeValue = getInputValue("promo-input-field");
+    inputValueClear("promo-input-field");
+    if (promoCodeValue === "101") {
+        const allCoast = document.getElementById("all-coast").innerText;
+        const discount = allCoast * 0.2;
+        const allTotalCoast = allCoast - discount;
+        if (allCoast <= 0 || allTotalCoast <= 0) {
+            alert("You loast your Discount for Nothing to Add");
+            addToCartDisable("apply-btn");
+        }
+        else {
+            document.getElementById("all-coast").innerText = allTotalCoast;
+            addToCartDisable("apply-btn");
+        }
+
+    }
+    else {
+        alert("You loast your Discount");
+        addToCartDisable("apply-btn");
+    }
+})
+
