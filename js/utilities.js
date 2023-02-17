@@ -28,7 +28,7 @@ function getInputElemntObj(NameId, PriceId, QuantityId, pTotal, pCount, iCount) 
     const pName = document.getElementById(NameId).innerText;
     const pPrice = (document.getElementById(PriceId).value);
     const pQuantity = (document.getElementById(QuantityId).value);
-    inputValueClear(PriceId,QuantityId);
+    inputValueClear(PriceId, QuantityId);
 
     if (pPrice < 0 || pQuantity < 0) {
         return 0;
@@ -65,10 +65,7 @@ function setElement(pName, pPrice, pQuantity, pItemTotal, pCount, iCount, parent
     }
 
     else {
-        document.getElementById(pCount).innerText = count;
-        document.getElementById(iCount).innerText = count;
-        document.getElementById(grandId).innerText = grandTotal;
-        document.getElementById(allCaostId).innerText = grandTotal;
+        setItemText(pCount, iCount, grandId, allCaostId,grandTotal);
         const tr = document.createElement("tr");
         tr.innerHTML = `
         <td>${count}</td>
@@ -82,6 +79,14 @@ function setElement(pName, pPrice, pQuantity, pItemTotal, pCount, iCount, parent
 
 }
 
+function setItemText(pCount, iCount, grandId, allCaostId,grandTotal) {
+    document.getElementById(pCount).innerText = count;
+    document.getElementById(iCount).innerText = count;
+    document.getElementById(grandId).innerText = grandTotal;
+    document.getElementById(allCaostId).innerText = grandTotal;
+}
+
+
 // grandTotal
 function grandTotal(value) {
     allTotal = allTotal + value;
@@ -91,7 +96,7 @@ function grandTotal(value) {
 function addToCartDisable(id) {
     document.getElementById(id).setAttribute("disabled", false);
 }
-function inputValueClear(id1,id2) {
+function inputValueClear(id1, id2) {
     document.getElementById(id1).value = "";
     document.getElementById(id2).value = "";
 }
